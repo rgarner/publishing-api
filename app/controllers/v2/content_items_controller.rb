@@ -18,16 +18,8 @@ module V2
     def linkables
       # Base path is returned to facilitate rummager indexing.
       # This can be removed once link updates are picked up by rummager from the message bus.
-      render json: Queries::GetContentCollection.new(
+      render json: Queries::GetLinkables.new(
         document_type: query_params.fetch(:document_type),
-        fields: %w(
-          title
-          content_id
-          publication_state
-          base_path
-          internal_name
-        ),
-        pagination: NullPagination.new
       ).call
     end
 
